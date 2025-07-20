@@ -22,4 +22,20 @@ class ProductRepositoryImplement implements productRepository {
       return [];
     }
   }
+
+  @override
+  Future<List<ProductEntity>> fatchProductsById(var id) async{
+    try {
+
+      final data=await  _apiClient.getBtId(
+          "/posts",
+          id,
+          headers: {'Content-Type':"application/json"}
+      );
+      return [ProductModel.fromJson(data)];
+    } catch (e) {
+      print(e.toString());
+      return [];
+    }
+  }
 }

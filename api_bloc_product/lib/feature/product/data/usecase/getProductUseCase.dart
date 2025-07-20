@@ -9,4 +9,7 @@ class GetProductUseCase {
   Future<List<ProductEntity>> call() async {
     return await repository.fatchProducts();
   }
+  Future<List<ProductEntity>> fetchProductsById(var id) async {
+    return await repository.fatchProductsById(id);
+  }
 }

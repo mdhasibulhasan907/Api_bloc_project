@@ -2,4 +2,5 @@ import 'package:api_bloc_product/feature/product/domain/product_entities/product
 
 abstract class productRepository{
   Future<List<ProductEntity>> fatchProducts();
+  Future<List<ProductEntity>> fatchProductsById(var id);
 }

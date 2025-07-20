@@ -6,6 +6,10 @@ abstract class ProductEvent extends Equatable {
   List<Object?> get props => [];
 }
 
-class FetchProductEvent extends ProductEvent{
+class FetchProductEvent extends ProductEvent {}
 
+class FetchProductByIdEvent extends ProductEvent {
+  final int id;
+
+  FetchProductByIdEvent(this.id);
 }

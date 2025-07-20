@@ -20,7 +20,19 @@ class ApiClient {
     );
     return _progressResponse(response);
   }
+
+  //get API by id  method
+  Future<dynamic> getBtId(String endpoint, var id,{Map<String, String>? headers}) async {
+    final response = await http.get(
+      Uri.parse("$apiBaseurl$endpoint/$id"),
+      headers: headers!,
+    );
+    return _progressResponse(response);
+  }
+
 }
+
+
 
 //response status checking
 dynamic _progressResponse(http.Response response) {

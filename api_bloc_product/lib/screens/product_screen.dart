@@ -6,7 +6,6 @@ import '../feature/product/presentation/product_event.dart';
 import '../feature/product/presentation/product_state.dart';
 
 class ProductScreen extends StatelessWidget {
-
   ProductScreen({super.key});
   final TextEditingController searchController = TextEditingController();
   @override
@@ -32,8 +31,10 @@ class ProductScreen extends StatelessWidget {
                 hintText: "Enter Product ID",
                 filled: true,
                 fillColor: Colors.grey.shade200,
-                contentPadding:
-                const EdgeInsets.symmetric(vertical: 0, horizontal: 16),
+                contentPadding: const EdgeInsets.symmetric(
+                  vertical: 0,
+                  horizontal: 16,
+                ),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
                   borderSide: BorderSide.none,
@@ -41,7 +42,20 @@ class ProductScreen extends StatelessWidget {
                 suffixIcon: IconButton(
                   icon: const Icon(Icons.search),
                   onPressed: () {
-                    // No functionality yet
+                    final idText = searchController.text.trim();
+                    final id = int.tryParse(idText);
+
+                    if (id != null) {
+                      context.read<ProductBloc>().add(
+                        FetchProductByIdEvent(id),
+                      );
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text("Please enter a valid numeric ID"),
+                        ),
+                      );
+                    }
                   },
                 ),
               ),
@@ -63,7 +77,10 @@ class ProductScreen extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                        margin: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 8,
+                        ),
                         child: Padding(
                           padding: const EdgeInsets.all(16.0),
                           child: Column(
@@ -72,11 +89,16 @@ class ProductScreen extends StatelessWidget {
                               // Product ID
                               RichText(
                                 text: TextSpan(
-                                  style: const TextStyle(fontSize: 16, color: Colors.black),
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.black,
+                                  ),
                                   children: [
                                     const TextSpan(
                                       text: "Product ID: ",
-                                      style: TextStyle(fontWeight: FontWeight.bold),
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                     TextSpan(text: "${data.id}"),
                                   ],
@@ -87,11 +109,16 @@ class ProductScreen extends StatelessWidget {
                               // Product Title
                               RichText(
                                 text: TextSpan(
-                                  style: const TextStyle(fontSize: 16, color: Colors.black),
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.black,
+                                  ),
                                   children: [
                                     const TextSpan(
                                       text: "Title: ",
-                                      style: TextStyle(fontWeight: FontWeight.bold),
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                     TextSpan(text: "${data.title}"),
                                   ],
@@ -104,7 +131,10 @@ class ProductScreen extends StatelessWidget {
                                 "${data.body}",
                                 maxLines: 3,
                                 overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(fontSize: 14, color: Colors.grey),
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.grey,
+                                ),
                               ),
                             ],
                           ),
@@ -116,7 +146,7 @@ class ProductScreen extends StatelessWidget {
                   );
                 }
                 return Center(child: Text("No data available"));
-              }
+              },
             ),
           ),
         ],

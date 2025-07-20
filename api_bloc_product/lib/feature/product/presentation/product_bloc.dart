@@ -18,5 +18,14 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
         print(e.toString());
       }
     });
+    on<FetchProductByIdEvent>((event, emit) async {
+      emit(ProductLoading());
+      try {
+        final result = await getProductUseCase.fetchProductsById(event.id);
+        emit(ProductLoaded(result));
+      } catch (e) {
+        print(e.toString());
+      }
+    });
   }
 }
