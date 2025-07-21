@@ -38,4 +38,65 @@ class ProductRepositoryImplement implements productRepository {
       return [];
     }
   }
+  @override
+  Future<ProductEntity> createProduct(Map<String, dynamic> data) async {
+    try {
+      final response = await _apiClient.post(
+        "/posts",
+        data,
+        headers: {'Content-Type': "application/json"},
+      );
+      return ProductModel.fromJson(response);
+    } catch (e) {
+      print(e.toString());
+      rethrow;
+    }
+  }
+
+  @override
+  Future<ProductEntity> updateProductByPut(var id, Map<String, dynamic> data) async {
+    try {
+      final response = await _apiClient.putById(
+        "/posts",
+        id,
+        data,
+        headers: {'Content-Type': "application/json"},
+      );
+      return ProductModel.fromJson(response);
+    } catch (e) {
+      print(e.toString());
+      rethrow;
+    }
+  }
+
+  @override
+  Future<ProductEntity> updateProductByPatch(var id, Map<String, dynamic> data) async {
+    try {
+      final response = await _apiClient.patchById(
+        "/posts",
+        id,
+        data,
+        headers: {'Content-Type': "application/json"},
+      );
+      return ProductModel.fromJson(response);
+    } catch (e) {
+      print(e.toString());
+      rethrow;
+    }
+  }
+
+  @override
+  Future<bool> deleteProduct(var id) async {
+    try {
+      await _apiClient.deletById(
+        "/posts",
+        id,
+        headers: {'Content-Type': "application/json"},
+      );
+      return true;
+    } catch (e) {
+      print(e.toString());
+      return false;
+    }
+  }
 }
