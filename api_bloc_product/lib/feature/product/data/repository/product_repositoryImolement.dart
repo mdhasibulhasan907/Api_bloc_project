@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:api_bloc_product/core/network.dart';
 import 'package:api_bloc_product/feature/product/data/models/product_model.dart';
 import 'package:api_bloc_product/feature/product/domain/product_entities/product_entity.dart';
@@ -39,7 +41,7 @@ class ProductRepositoryImplement implements productRepository {
     }
   }
   @override
-  Future<ProductEntity> createProduct(Map<String, dynamic> data) async {
+  Future<ProductEntity> createProduct(Map<String, String> data) async {
     try {
       final response = await _apiClient.post(
         "/posts",

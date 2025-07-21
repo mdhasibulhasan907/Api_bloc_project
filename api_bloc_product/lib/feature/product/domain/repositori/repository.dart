@@ -6,11 +6,11 @@ abstract class productRepository {
   // Get product by ID
   Future<List<ProductEntity>> fatchProductsById(var id);
   // POST: Create a product
-  Future<ProductEntity> createProduct(Map<String, dynamic> data);
+  Future<ProductEntity> createProduct(Map<String, String> data);
   // PUT: Full update of a product
-  Future<ProductEntity> updateProductByPut(var id, Map<String, dynamic> data);
+  Future<ProductEntity> updateProductByPut(var id, Map<String, String> data);
   // PATCH: Partial update of a product
-  Future<ProductEntity> updateProductByPatch(var id, Map<String, dynamic> data);
+  Future<ProductEntity> updateProductByPatch(var id, Map<String, String> data);
   // DELETE: Remove a product by ID
   Future<bool> deleteProduct(var id);
 }

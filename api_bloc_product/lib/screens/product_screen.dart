@@ -56,9 +56,18 @@ class ProductScreen extends StatelessWidget {
                         ),
                       );
                     }
+
                   },
+
                 ),
+
+
               ),
+              onChanged: (value) {
+                if (value.trim().isEmpty) {
+                  context.read<ProductBloc>().add(FetchProductEvent()); // auto reload all products
+                }
+              },
             ),
           ),
           Expanded(

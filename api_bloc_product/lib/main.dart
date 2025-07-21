@@ -1,5 +1,5 @@
 import 'package:api_bloc_product/feature/product/data/repository/product_repositoryImolement.dart';
-import 'package:api_bloc_product/feature/product/data/usecase/getProductUseCase.dart';
+import 'package:api_bloc_product/feature/product/data/usecase/product_use_case.dart';
 import 'package:api_bloc_product/feature/product/presentation/product_bloc.dart';
 import 'package:api_bloc_product/screens/product_screen.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
         providers: [
-          BlocProvider(create: (_)=>ProductBloc(GetProductUseCase(ProductRepositoryImplement()))),
+          BlocProvider(create: (_)=>ProductBloc(ProductUseCase(ProductRepositoryImplement()))),
         ],
 
         child: MaterialApp(
